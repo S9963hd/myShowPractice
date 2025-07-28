@@ -1,7 +1,22 @@
 import videoClip from '../assets/concert.mp4';
 import '../styles/Main.css';
 import '../styles/Animations.css';
+import axios from 'axios';
+import { useState,useEffect } from 'react';
 let Main=()=>{
+    const [registered, setRegistered] = useState([]);
+    useEffect(() => {
+        const fetchRegisteredConcerts = async () => {
+            try {
+                const response = await axios.get('http://localhost:4000/data');
+                setRegistered(response.data);
+                console.log("Registered concerts:", response.data);
+            } catch (error) {
+                console.error("Error fetching registered concerts:", error);
+            }
+        }
+        fetchRegisteredConcerts();
+    },[]);
     return(
         <div className="container-fluid ">
             <div className="row backgroundClip position-relative " >
@@ -27,7 +42,7 @@ let Main=()=>{
             <div className="row d-flex justify-content-center align-items-center mt-5 text-center"  >
                     <h1 className="col-12 fw-bold">Current Number Of Bookings</h1> 
                     <div className="col-12">
-                        <h1 className="display-1 text-primary fw-bold">10+</h1>
+                        <h1 className="display-1 text-primary fw-bold">{registered.length ??0}+</h1>
                         <p className="text-secondary">Bookings made in the last 24 hours</p>
                     </div>  
                 </div>
