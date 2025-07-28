@@ -1,0 +1,84 @@
+{
+  "data": [
+    {
+      "name": "Ed-sheeran",
+      "image": "https://www.ed-sheeran.com/wp-content/uploads/2023/09/Ed-Sheeran-2023-Press-Photo-Credit-Jamie-Jamison-1.jpg",
+      "description": "Ed Sheeran is an English singer-songwriter, known for his melodic pop and acoustic music. He gained fame with hits like 'Shape of You' and 'Perfect'. Sheeran's heartfelt lyrics and catchy melodies have made him one of the best-selling music artists in the world.",
+      "rating": 4.5,
+      "genre": "Pop",
+      "releaseDate": "2011-09-09",
+      "duration": "3h 30m",
+      "cast": [
+        "Ed Sheeran",
+        "Taylor Swift",
+        "Justin Bieber"
+      ],
+      "ticketprice": 2000,
+      "id": "c536"
+    },
+    {
+      "name": "Taylor Swift",
+      "image": "https://www.taylorswift.com/wp-content/uploads/2023/10/Taylor-Swift-2023-Press-Photo-Credit-Danny-Clinch.jpg",
+      "description": "Taylor Swift is an American singer-songwriter known for her narrative songwriting and genre-spanning music. She has won numerous awards, including multiple Grammys, and is celebrated for her albums like '1989', 'Lover', and 'Folklore'.",
+      "rating": 4.8,
+      "genre": "Pop",
+      "releaseDate": "2006-10-24",
+      "duration": "2h 45m",
+      "cast": [
+        "Taylor Swift",
+        "Ed Sheeran",
+        "Lorde"
+      ],
+      "ticketprice": 2500,
+      "id": "55b4"
+    },
+    {
+      "name": "Justin Bieber",
+      "image": "https://www.justinbiebermusic.com/wp-content/uploads/2023/09/Justin-Bieber-2023-Press-Photo-Credit-John-Mayer.jpg",
+      "description": "Justin Bieber is a Canadian singer and songwriter who gained fame as a teenager with hits like 'Baby' and 'Sorry'. Known for his pop and R&B style, Bieber has a massive global fanbase and has won numerous awards throughout his career.",
+      "rating": 4.2,
+      "genre": "Pop",
+      "releaseDate": "2009-01-18",
+      "duration": "2h 30m",
+      "cast": [
+        "Justin Bieber",
+        "Ed Sheeran",
+        "Ariana Grande"
+      ],
+      "ticketprice": 1800,
+      "id": "527b"
+    },
+    {
+      "name": "Ariana Grande",
+      "image": "https://www.arianagrande.com/wp-content/uploads/2023/10/Ariana-Grande-2023-Press-Photo-Credit-Joe-Termini.jpg",
+      "description": "Ariana Grande is an American singer and actress known for her wide vocal range and pop hits like 'Thank U, Next' and '7 Rings'. She has received multiple awards, including Grammys, and is recognized for her influence in the music industry.",
+      "rating": 4.6,
+      "genre": "Pop",
+      "releaseDate": "2013-09-30",
+      "duration": "2h 50m",
+      "cast": [
+        "Ariana Grande",
+        "Justin Bieber",
+        "Demi Lovato"
+      ],
+      "ticketprice": 2200,
+      "id": "480e"
+    },
+    {
+      "name": "Ariana Grande",
+      "image": "https://www.arianagrande.com/wp-content/uploads/2023/10/Ariana-Grande-2023-Press-Photo-Credit-Joe-Termini.jpg",
+      "description": "Ariana Grande is an American singer and actress known for her wide vocal range and pop hits like 'Thank U, Next' and '7 Rings'. She has received multiple awards, including Grammys, and is recognized for her influence in the music industry.",
+      "rating": 4.6,
+      "genre": "Pop",
+      "releaseDate": "2013-09-30",
+      "duration": "2h 50m",
+      "cast": [
+        "Ariana Grande",
+        "Justin Bieber",
+        "Demi Lovato"
+      ],
+      "ticketprice": 2200,
+      "id": "0136"
+    }
+  ]
+}
