@@ -15,10 +15,10 @@ let fieldValidation=(key,value)=>{
             console.log("<><>"+key);
             return passwordRegex.test(value);
         default:
-            return false;
+            return true;
     }
 }
-let submitValidation=(checklist)=>{
+export let submitValidation=(checklist)=>{
     let isValid=false;
     console.log("Here is the checklist: ",checklist);
     for(let key in checklist){
@@ -28,22 +28,6 @@ let submitValidation=(checklist)=>{
     }
     return !isValid;
 }
-export let handleInputChange=(event,dataCheck)=>{
-    let fieldName=event.target.name;
-    let fieldValue=event.target.value;
-    if(fieldValidation(fieldName,fieldValue)){
-        console.log("Valid")
-        if(submitValidation(dataCheck)){
-            console.log("Form is valid");
-            return{status:true,fieldName:[fieldName],fullValid:true}
-        }
-        else{
-            console.log("Form is not valid");
-            return{status:true,fieldName:[fieldName],fullValid:false}
-        }
-    }
-    else{
-        console.log("Invalid")
-        return {status:false,fieldName:[fieldName],fullValid:false}
-    }
+export let handleInputChange=(fieldName,fieldValue)=>{
+    return fieldValidation(fieldName,fieldValue);
 }

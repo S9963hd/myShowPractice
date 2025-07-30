@@ -1,28 +1,18 @@
-import react,{useState} from 'react';
+import react,{useState,useEffect} from 'react';
 import logo from '../assets/logo.png';
-import {data, Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import {useNavigate,useLocation} from 'react-router-dom';
 import concertImage from '../assets/concert.jpg';
-import { handleInputChange} from '../validation/forForms';
+import { handleInputChange,submitValidation} from '../validation/forForms';
 import axios from 'axios';
 let Booking=()=>{
     let navigate=useNavigate();
     let concert=useLocation().state || {};
-    let submitData=async(e)=>{
-            e.preventDefault();
-            await axios.post('http://localhost:4001/data',userData).then((response)=>{
-                console.log("Booking successful:", response.data);
-                alert("Booking successful!");
-                navigate('/concert');
-            }).catch((error)=>{
-                console.error("Error booking concert:", error);
-                alert("Booking failed. Please try again.");
-            });
-            console.log("Here is the user data: ",userData);
-    }
+
+    const [currentkey,setCurrentKey]=useState('');
     const [userData,setUserdata]=useState({
         name:"",
-        data:null,
+        date:null,
         numberOfTickets:1,
         comfort:"Standard",
         ticketprice:concert.ticketprice*1,
@@ -35,11 +25,41 @@ let Booking=()=>{
         comfort:true,
         id:true
     });
-    const [formStatus,setFormStatus]=useState({
-        status:false,
-        fieldName:null,
-        fullValid:false
-    });
+
+    let submitData=async(e)=>{
+            e.preventDefault();
+            await axios.post('http://localhost:4001/data',userData).then((response)=>{
+                console.log("Booking successful:", response.data);
+                alert("Booking successful!");
+                navigate('/concert');
+            }).catch((error)=>{
+                console.error("Error booking concert:", error);
+                alert("Booking failed. Please try again.");
+            });
+            console.log("Here is the user data: ",userData);
+    }
+    let stateManager=(e)=>{
+        let fieldName=e.target.name;
+        let fieldValue=e.target.value;
+        setUserdata({...userData,[fieldName]:fieldValue});
+        setCurrentKey(fieldName);
+    }
+    
+    //userDate useffect
+    useEffect(()=>{
+        console.log(userData)
+        if(handleInputChange(currentkey,userData[currentkey])){
+            setDataCheck({...dataCheck,[currentkey]:true});
+        }
+        else{
+            console.log(currentkey);
+            setDataCheck({...dataCheck,[currentkey]:false});
+        }
+    },[userData])
+    useEffect(()=>{
+        setToggleButton(submitValidation(dataCheck));
+    },[dataCheck])
+    const [toggleButton,setToggleButton]=useState(false);
     return(
 
         <div className="container-fluid">
@@ -54,12 +74,7 @@ let Booking=()=>{
                         <h2 className="text-center mb-4 fw-bold">Book Your Concert</h2>
                         <div className="mb-3">
                             <label htmlFor="name" className="form-label">Full Name</label>
-                            <input type="text" className="form-control" name="name" id="name" value={userData.name} placeholder="Enter Full name" onChange={(e)=>{
-                                console.log(dataCheck);
-                                let result=handleInputChange(e,dataCheck);
-                                    setDataCheck({...dataCheck,[e.target.name]:result.status});
-                                    setFormStatus({...result});
-                                    setUserdata({...userData,[e.target.name]:e.target.value})}} required autofocus/>
+                            <input type="text" className="form-control" name="name" id="name" value={userData.name} placeholder="Enter Full name" onChange={(e=>stateManager(e))} required autofocus/>
                         </div>
                         {console.log("Here is the concert data check: ",dataCheck)}
                         <div className="mb-3">
@@ -68,17 +83,17 @@ let Booking=()=>{
                         </div>
                         <div className="mb-3">
                             <label htmlFor="numberOfTickets" className="form-label">Number of Tickets</label>
-                            <input type="number" min="1" className="form-control" name="numberOfTickets" id="numberOfTickets" value={userData.numberOfTickets} placeholder="Enter number of tickets" onChange={(e)=>setUserdata({...userData,numberOfTickets:e.target.value,ticketprice:concert.ticketprice*e.target.value})}/>
+                            <input type="number" min="1" className="form-control" name="numberOfTickets" id="numberOfTickets" value={userData.numberOfTickets} placeholder="Enter number of tickets" onChange={(e)=>stateManager(e)}/>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="comfort" className="form-label">Comfort Level</label>
-                            <select className="form-select" name="comfort" id="comfort" value={userData.comfort} onChange={(e)=>setUserdata({...userData,comfort:e.target.value})}>
+                            <select className="form-select" name="comfort" id="comfort" value={userData.comfort} onChange={(e)=>stateManager(e)}>
                                 <option value="Standard" >Standard</option>
                                 <option value="Premium">Premium</option>
                                 <option value="Royal">Royal</option>
                             </select>
                         </div>
-                        <button type="submit" className="btn btn-primary w-100" disabled={!formStatus.fullValid}>Book Now</button>
+                        <button type="submit" className="btn btn-primary w-100" disabled={!toggleButton}>Book Now</button>
                         <div className="row d-flex justify-content-center mt-4">
                         <div className="col-12">
                             <table className="table table-striped mt-3">
